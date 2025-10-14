@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymCCP - E-commerce Fitness</title>
+  <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="nav-logo" aria-hidden="true">
+        <i class="fas fa-dumbbell"></i>
+        <h1>GymCCP</h1>
+      </div>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+
+    <div class="nav-right">
+      <button id="carritoIcon" class="carrito-icon" aria-label="Ver carrito">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contadorCarrito">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-section animate-on-scroll">
+      <div class="hero-content">
+        <h2>Estilo. Potencia. Rendimiento.</h2>
+        <p>Equipá tu entrenamiento con los mejores suplementos y accesorios fitness.</p>
+        <a href="#catalogo" class="btn-hero">Ver Catálogo</a>
+      </div>
+    </section>
+
+    <section id="catalogo" class="catalogo-section animate-on-scroll">
+      <h2><i class="fas fa-dumbbell"></i> Nuestro Catálogo</h2>
+
+      <div class="filtros">
+        <button class="filtro-btn active" data-filter="Todos">Todos</button>
+        <button class="filtro-btn" data-filter="Suplementos">Suplementos</button>
+        <button class="filtro-btn" data-filter="Accesorios">Accesorios</button>
+        <button class="filtro-btn" data-filter="Equipamiento">Equipamiento</button>
+      </div>
+
+      <div id="gridProductos" class="grid-productos" aria-live="polite"></div>
+    </section>
+
+    <section id="contacto" class="contacto-section animate-on-scroll">
+      <h2><i class="fas fa-envelope"></i> Contacto</h2>
+      <p>¿Tenés dudas o querés más información? Escribinos:</p>
+      <form class="contacto-form" onsubmit="event.preventDefault(); Swal.fire('Gracias','Recibimos tu mensaje','success')">
+        <input type="text" placeholder="Tu nombre" required />
+        <input type="email" placeholder="Tu email" required />
+        <textarea placeholder="Mensaje" rows="4" required></textarea>
+        <button type="submit" class="btn-primario">Enviar</button>
+      </form>
+    </section>
+
+    <div id="modalCarrito" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-contenido">
+        <div class="modal-header">
+          <h3><i class="fas fa-shopping-bag"></i> Tu Carrito</h3>
+          <button id="cerrarModalCarrito" class="cerrar-modal" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="contenidoCarrito" class="contenido-carrito"></div>
+        <div class="resumen">
+          <p id="totalItems">Items: 0</p>
+          <p id="subtotal">Subtotal: $0</p>
+          <p id="descuento" class="descuento-oculto">Descuento (20%): -$0</p>
+          <p id="envio">Envío: $4000</p>
+          <p id="totalFinal" class="total-final">Total: $0</p>
+        </div>
+        <div class="modal-footer">
+          <button id="btnLimpiarCarrito" class="btn-secundario">
+            <i class="fas fa-trash"></i> Limpiar
+          </button>
+          <button id="btnFinalizarCompra" class="btn-primario" disabled>
+            <i class="fas fa-credit-card"></i> Finalizar Compra
+          </button>
+        </div>
+        <p id="mensajeCarrito" class="mensaje" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div id="modalUsuario" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-contenido">
+        <div class="modal-header">
+          <h3><i class="fas fa-user"></i> Datos para Envío</h3>
+          <button id="cerrarModalUsuario" class="cerrar-modal" aria-label="Cerrar formulario">&times;</button>
+        </div>
+        <form id="formUsuario">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" required />
+          <label for="apellido">Apellido:</label>
+          <input type="text" id="apellido" required />
+          <label for="dni">DNI:</label>
+          <input type="number" id="dni" min="1000000" max="99999999" required />
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" placeholder="Ej: Av. Siempre Viva 123" required />
+          <div class="modal-footer">
+            <button type="button" id="btnCancelarUsuario" class="btn-secundario">Cancelar</button>
+            <button type="submit" class="btn-primario">Confirmar y Finalizar</button>
+          </div>
+        </form>
+        <p id="mensajeUsuario" class="mensaje" aria-live="polite"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 GymCCP | Fuerza y estilo urbano</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
